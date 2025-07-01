@@ -1,0 +1,59 @@
+# invoke rewrite engine
+RewriteEngine On
+RewriteBase /
+
+Options -Indexes
+<IfModule mod_negotiation.c>
+	Options -MultiViews
+</IfModule>
+
+# Redirect non-www to www
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+# Prevent scraping from archive for free demo
+RewriteCond %{HTTP_USER_AGENT} (ia_archiver) [NC]
+RewriteRule . - [F,L]
+
+# Create pretty URLs
+DirectorySlash Off
+
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+# End: Create pretty URLs
+
+# Specific redirections
+RewriteRule ^index\.html$ / [L,R=301]
+RewriteCond %{QUERY_STRING} ^updated-max=2018-07-30T14\:28\:00\%2B05\:30&max-results=10$
+RewriteRule ^search$ search_updated-max-2018-07-30T14-28-00-05-30-max-results-10.html [L,R=301,QSD]
+RewriteCond %{QUERY_STRING} ^q=$
+RewriteRule ^search$ search_q.html [L,R=301,QSD]
+RewriteRule ^search/label/%E0%AE%9A%E0%AF%82%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AE%B0%E0%AF%8D\s16$ search/label/சூப்பர்16.html [L,R=301,QSD]
+RewriteRule ^search/label/%E0%AE%87%E0%AE%B0%E0%AE%A3%E0%AF%8D%E0%AE%9F%E0%AE%BE%E0%AE%AE%E0%AF%8D\s%E0%AE%9E%E0%AE%BE%E0%AE%AF%E0%AE%BF%E0%AE%B1%E0%AF%81$ search/label/இரண்டாம்ஞாயிறு.html [L,R=301,QSD]
+RewriteRule ^search/label/%E0%AE%B5%E0%AF%87%E0%AE%B2%E0%AF%88\s%E0%AE%B5%E0%AE%BE%E0%AE%AF%E0%AF%8D%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%B3%E0%AF%8D$ search/label/வேலைவாய்ப்புகள்.html [L,R=301,QSD]
+RewriteCond %{QUERY_STRING} ^updated-max=2015-05-29T11\:41\:00\%2B05\:30&max-results=20&start=13&by-date=false$
+RewriteRule ^search/label/%E0%AE%AA%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AE%BF$ search/label/பத்தி_updated-max-2015-05-29T11-41-00-05-30-max-results-20-start-13-by-date-false.html [L,R=301,QSD]
+RewriteRule ^search/label/%E0%AE%AE%E0%AE%BF%E0%AE%A9%E0%AF%8D%E0%AE%A9%E0%AE%B2%E0%AF%8D\s%E0%AE%95%E0%AE%A4%E0%AF%88%E0%AE%95%E0%AE%B3%E0%AF%8D$ search/label/மின்னல்கதைகள்.html [L,R=301,QSD]
+RewriteCond %{QUERY_STRING} ^updated-max=2013-03-21T11\:49\:00\%2B05\:30&max-results=20&start=7&by-date=false$
+RewriteRule ^search/label/%E0%AE%AA%E0%AF%81%E0%AE%A9%E0%AF%88%E0%AE%B5%E0%AF%81$ search/label/புனைவு_updated-max-2013-03-21T11-49-00-05-30-max-results-20-start-7-by-date-false.html [L,R=301,QSD]
+
+# Redirect all extensions to html
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.shtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.phtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.jhtml$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.htm$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.php$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.aspx$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.asp$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.jsp$ $1.html [L,NC,R=301]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^(.*)\.apk$ $1.html [L,NC,R=301]
+# End: Redirect all extensions to html

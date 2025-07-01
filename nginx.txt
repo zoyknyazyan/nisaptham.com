@@ -1,0 +1,28 @@
+# Redirect non-www to www
+
+# Create pretty URLs
+# End: Create pretty URLs
+
+# Specific redirections
+if ($args ~* ^updated-max=2018-07-30T14\:28\:00\%2B05\:30&max-results=10$){ rewrite ^/search$ /search_updated-max-2018-07-30T14-28-00-05-30-max-results-10.html? permanent; }
+if ($args ~* ^q=$){ rewrite ^/search$ /search_q.html? permanent; }
+rewrite ^/search/label/%E0%AE%9A%E0%AF%82%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AE%B0%E0%AF%8D\s16$ /search/label/சூப்பர்16.html? permanent;
+rewrite ^/search/label/%E0%AE%87%E0%AE%B0%E0%AE%A3%E0%AF%8D%E0%AE%9F%E0%AE%BE%E0%AE%AE%E0%AF%8D\s%E0%AE%9E%E0%AE%BE%E0%AE%AF%E0%AE%BF%E0%AE%B1%E0%AF%81$ /search/label/இரண்டாம்ஞாயிறு.html? permanent;
+rewrite ^/search/label/%E0%AE%B5%E0%AF%87%E0%AE%B2%E0%AF%88\s%E0%AE%B5%E0%AE%BE%E0%AE%AF%E0%AF%8D%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%81%E0%AE%95%E0%AE%B3%E0%AF%8D$ /search/label/வேலைவாய்ப்புகள்.html? permanent;
+if ($args ~* ^updated-max=2015-05-29T11\:41\:00\%2B05\:30&max-results=20&start=13&by-date=false$){ rewrite ^/search/label/%E0%AE%AA%E0%AE%A4%E0%AF%8D%E0%AE%A4%E0%AE%BF$ /search/label/பத்தி_updated-max-2015-05-29T11-41-00-05-30-max-results-20-start-13-by-date-false.html? permanent; }
+rewrite ^/search/label/%E0%AE%AE%E0%AE%BF%E0%AE%A9%E0%AF%8D%E0%AE%A9%E0%AE%B2%E0%AF%8D\s%E0%AE%95%E0%AE%A4%E0%AF%88%E0%AE%95%E0%AE%B3%E0%AF%8D$ /search/label/மின்னல்கதைகள்.html? permanent;
+if ($args ~* ^updated-max=2013-03-21T11\:49\:00\%2B05\:30&max-results=20&start=7&by-date=false$){ rewrite ^/search/label/%E0%AE%AA%E0%AF%81%E0%AE%A9%E0%AF%88%E0%AE%B5%E0%AF%81$ /search/label/புனைவு_updated-max-2013-03-21T11-49-00-05-30-max-results-20-start-7-by-date-false.html? permanent; }
+
+# Redirect all extensions to html
+if ($is_args = ''){
+	rewrite ^([^.]*)\.shtml$ $1.html permanent;
+	rewrite ^([^.]*)\.phtml$ $1.html permanent;
+	rewrite ^([^.]*)\.jhtml$ $1.html permanent;
+	rewrite ^([^.]*)\.htm$ $1.html permanent;
+	rewrite ^([^.]*)\.php$ $1.html permanent;
+	rewrite ^([^.]*)\.aspx$ $1.html permanent;
+	rewrite ^([^.]*)\.asp$ $1.html permanent;
+	rewrite ^([^.]*)\.jsp$ $1.html permanent;
+	rewrite ^([^.]*)\.apk$ $1.html permanent;
+}
+# End: Redirect all extensions to html
